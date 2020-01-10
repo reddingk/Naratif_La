@@ -1,0 +1,26 @@
+.gerald-page {
+    padding: 3% 7px;
+    
+    .data-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: 100%;
+
+        .data-section {
+            margin: 3px;
+            width: 40%;
+            padding: 7px 15px;
+            border-radius: 3px;
+            .gerald(background, 0.7);
+            text-align: center;
+            color: rgba(255,255,255,1);
+            position: relative;
+
+            &.weather {
+                flex: 1;
+                #weatherTimeline { width: 100%; height: 100%; }
+            }
+        }
+    }
+}
