@@ -1,10 +1,9 @@
 
 class characterModel {
-    constructor(myName, myNav, myBody, myDesc){
+    constructor(myName, myBody, myDesc){
         this.name = myName;        
         this.colorClass = myName+"_theme";
-        this.description = myDesc;
-        this.navComponent = myNav;
+        this.description = myDesc;        
         this.bodyComponent = myBody;
     }
 }

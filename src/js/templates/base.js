@@ -11,13 +11,14 @@ import "../../css/app.less";
 import UC from './uc';
 import Gerald from './gerald';
 import LilBill from './lilBill';
+import RooseveltFranklin from './rooseveltFranklin';
 import Susie from './susie';
 
 class Base extends Component {
     constructor(props) {
         super(props);
         this.state = {         
-          selectedChar: "susie",
+          selectedChar: "rooseveltfranklin",
           forwardDir: true,
           selectedItem: null,
           dataLibrary:{}
@@ -27,10 +28,10 @@ class Base extends Component {
         this.renderSwitch = this.renderSwitch.bind(this);
   
         this.characterList = {
-           "gerald": new characterModel("Gerald", null, <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser}/>, "Gerald"),
-           "lilbill": new characterModel("LilBill", null, <LilBill />, "Little Bill"),
-           "rooseveltfranklin": new characterModel("RooseveltFranklin", null, <UC name="Roosevelt Franklin"/>, "Roosevelt Franklin"),
-           "susie": new characterModel("Susie", null, <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} />, "Susie")           
+           "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser}/>, "Gerald"),
+           "lilbill": new characterModel("LilBill", <LilBill />, "Little Bill"),
+           "rooseveltfranklin": new characterModel("RooseveltFranklin", <RooseveltFranklin />, "Roosevelt Franklin"),
+           "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} />, "Susie")           
         };
     }
 
@@ -75,15 +76,14 @@ class Base extends Component {
             </div>
             <CSSTransitionGroup transitionName={(this.state.forwardDir ? "cardSlide" : "reverseCardSlide")} transitionAppear={false}
                                 transitionLeave={true} transitionLeaveTimeout={3000}
-                transitionEnter={true} transitionEnterTimeout={3000}>
+                                transitionEnter={true} transitionEnterTimeout={3000}>
                 <div key={this.state.selectedChar} className="body-container">{ this.renderSwitch(this.state.selectedChar)}</div>                       
             </CSSTransitionGroup>
           </div>         
         );
     }
 
-    componentDidMount(){
-        //this.changeSelectedChar("gerald");        
+    componentDidMount(){         
         /* [REMOVE] */
         //this.joinNetwork();
     }
