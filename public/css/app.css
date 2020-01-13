@@ -35,7 +35,8 @@
   flex-direction: row;
 }
 .rooseveltFranklin-page .map-ctrl {
-  width: 30%;
+  width: 100%;
+  min-width: 150px;
   color: #ffffff;
   padding: 7px;
   margin-right: 10px;
@@ -45,6 +46,12 @@
 .rooseveltFranklin-page .map-ctrl .ctrl-item {
   display: flex;
   flex-direction: row;
+}
+.rooseveltFranklin-page .map-ctrl .ctrl-item.area {
+  flex-wrap: wrap;
+}
+.rooseveltFranklin-page .map-ctrl .ctrl-item + .ctrl-item {
+  margin-top: 7px;
 }
 .rooseveltFranklin-page .map-ctrl .ctrl-item .zoom {
   width: 30px;
@@ -84,6 +91,39 @@
 }
 .rooseveltFranklin-page .map-ctrl .ctrl-item .zoom:hover {
   opacity: 1;
+}
+.rooseveltFranklin-page .map-ctrl .ctrl-item .layer-item {
+  padding: 5px;
+  display: flex;
+  position: relative;
+  text-align: center;
+  padding: 5px 30px 5px 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 0px 5px 5px 0px;
+  transition: 0.5s all ease;
+  cursor: pointer;
+}
+.rooseveltFranklin-page .map-ctrl .ctrl-item .layer-item .layer-toggle {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-left: 10px;
+  background: #ffffff;
+  transition: 0.5s all ease;
+}
+.rooseveltFranklin-page .map-ctrl .ctrl-item .layer-item:hover,
+.rooseveltFranklin-page .map-ctrl .ctrl-item .layer-item.active {
+  background: #ffffff;
+  color: #1c202a;
+}
+.rooseveltFranklin-page .map-ctrl .ctrl-item .layer-item:hover .layer-toggle,
+.rooseveltFranklin-page .map-ctrl .ctrl-item .layer-item.active .layer-toggle {
+  background: #1c202a;
 }
 .rooseveltFranklin-page .arcMap {
   position: relative;

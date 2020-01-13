@@ -4,7 +4,8 @@
     display: flex;
     flex-direction: row;
     .map-ctrl { 
-        width: 30%;
+        width: 100%;
+        min-width: 150px;
         color: rgba(255,255,255,1);
         padding: 7px;
         margin-right: 10px;
@@ -14,6 +15,9 @@
         .ctrl-item {            
             display: flex;
             flex-direction: row;
+
+            &.area { flex-wrap: wrap; }
+            &+.ctrl-item { margin-top: 7px; }
             .zoom {
                 width: 30px;
                 height: 30px;
@@ -53,6 +57,38 @@
 
                 &+.zoom { margin-left: 7px; }
                 &:hover { opacity: 1;}
+            }
+
+            .layer-item {
+                padding: 5px;
+                display: flex;
+                position: relative;
+                text-align: center;
+                padding: 5px 30px 5px 5px;
+                border-radius: 5px;
+                border: 1px solid rgba(255,255,255,0.3);
+                margin: 0px 5px 5px 0px;
+                transition: 0.5s all ease;
+                cursor: pointer;
+
+                .layer-toggle { 
+                    position: absolute;
+                    right: 5px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    border-radius: 50%; 
+                    width: 10px; 
+                    height: 10px; 
+                    margin-left: 10px;
+                    background: rgba(255,255,255,1);
+                    transition: 0.5s all ease;
+                }
+
+                &:hover, &.active { 
+                    background: rgba(255,255,255,1); 
+                    color: rgba(28, 32, 42,1); 
+                    .layer-toggle { background: rgba(28, 32, 42,1); }
+                }
             }
         }
     }
