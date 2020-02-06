@@ -2,6 +2,50 @@
 /* Material Design */
 /* Fonts */
 /* Color Themes */
+.access .main-access .page-container {
+  display: flex;
+  justify-content: center;
+}
+.access .main-access .access-pad {
+  position: relative;
+  width: 400px;
+  height: 500px;
+}
+.access .main-access .access-pad #svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.access .main-access .access-pad #svg .node-layer .node-container .input-field .port {
+  cursor: pointer;
+  opacity: 0.1;
+  transition: 0.5s all ease;
+}
+.access .main-access .access-pad #svg .node-layer .node-container .input-field .port:hover {
+  opacity: 1;
+}
+.access .main-access .access-pad #svg .node-layer .node-container .input-field .port .port-scrim {
+  fill: transparent;
+}
+.access .main-access .access-pad #svg .node-layer .node-container .input-field .port .port-outer {
+  fill: #777777;
+}
+.access .main-access .access-pad #svg .node-layer .node-container .input-field .port .port-inner {
+  fill: #5F5F5F;
+}
+.access .main-access .access-pad #svg .connector-handle {
+  fill: #fff;
+}
+.access .main-access .access-pad #svg .connector-path {
+  stroke: #fff;
+  stroke-width: 10;
+  fill: none;
+}
+.access .main-access .access-pad #svg .connector-path-outline {
+  stroke: #333;
+  stroke-width: 6;
+  fill: none;
+}
 .gerald-page {
   padding: 3% 7px;
 }
