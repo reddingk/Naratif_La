@@ -6,12 +6,13 @@ import "../css/app.less";
 /* Components */
 import CircuitBack from './templates/components/circuitBack';
 import Base from './templates/base';
+import Access from './templates/access';
 
 class App extends Component{
     constructor(props) {
        super(props);
        this.state = {
-           jUser:{_id: "5ba02d36ea65672f28f6eec2", userId: "ktest", name: "Kris Redding", token: "J6968MjfCFaeMHMt8kDAA1"}
+           jUser:{_id: "5ba02d36ea65672f28f6eec2", userId: "ktest", name: "Kris Redding", token2: "J6968MjfCFaeMHMt8kDAA1"}
        };
  
        this.jConnect = {
@@ -41,7 +42,10 @@ class App extends Component{
           <div className="naratifLa-body">
              <CircuitBack />
              <div className="content-body">
-                <Base jConnect={this.jConnect} jUser={this.state.jUser} userHandler={this.userHandler}/>                  
+               { (!(this.state.jUser && this.state.jUser.token) ?
+                  <Access jConnect={this.jConnect} jUser={this.state.jUser} userHandler={this.userHandler}/> :
+                  <Base jConnect={this.jConnect} jUser={this.state.jUser} userHandler={this.userHandler}/>     
+               )}             
              </div>
           </div>
        );
