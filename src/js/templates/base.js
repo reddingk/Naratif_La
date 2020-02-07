@@ -18,7 +18,7 @@ class Base extends Component {
     constructor(props) {
         super(props);
         this.state = {         
-          selectedChar: "rooseveltfranklin",
+          selectedChar: "gerald",
           forwardDir: true,
           selectedItem: null,
           dataLibrary:{}

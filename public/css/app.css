@@ -7,6 +7,18 @@
   flex-direction: column;
   justify-content: center;
 }
+.access .main-access .page-container .accessErrorMsg {
+  position: fixed;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 7px 21px;
+  background: rgba(150, 50, 50, 0.2);
+  border: 1px solid #963232;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 7px;
+}
 .access .main-access .page-container .access-container {
   display: flex;
   flex-direction: row;
@@ -596,7 +608,7 @@ html {
   margin: -75px 0 0 -75px;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #3498db;
+  border-top-color: #4b4b4b;
   -webkit-animation: spin 2s linear infinite;
   /* Chrome, Opera 15+, Safari 5+ */
   animation: spin 2s linear infinite;

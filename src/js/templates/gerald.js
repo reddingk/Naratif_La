@@ -142,7 +142,7 @@ class Gerald extends Component{
             chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
             chart.dateFormatter.dateFormat = "HH";
 
-            var formattedData = data.map(function(time,i){
+            var formattedData = data.dateList.map(function(time,i){
                 var endDate = new Date(time.dt_txt);
                 endDate.setTime(endDate.getTime() + (86400000));
 
