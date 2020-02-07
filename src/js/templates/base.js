@@ -14,24 +14,28 @@ import LilBill from './lilBill';
 import RooseveltFranklin from './rooseveltFranklin';
 import Susie from './susie';
 
+import SocketConnect from './components/socketConnect';
+
 class Base extends Component {
     constructor(props) {
         super(props);
         this.state = {         
-          selectedChar: "rooseveltfranklin",
+          selectedChar: "gerald",
           forwardDir: true,
           selectedItem: null,
-          dataLibrary:{}
+          dataLibrary:{},
+          localSock:null
         };
           
         this.changeSelectedChar = this.changeSelectedChar.bind(this);
         this.renderSwitch = this.renderSwitch.bind(this);
-  
+        this.socketDeclaration = this.socketDeclaration.bind(this);
+
         this.characterList = {
-           "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser}/>, "Gerald"),
+           "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock} />, "Gerald"),
            "lilbill": new characterModel("LilBill", <LilBill />, "Little Bill"),
            "rooseveltfranklin": new characterModel("RooseveltFranklin", <RooseveltFranklin />, "Roosevelt Franklin"),
-           "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} />, "Susie")           
+           "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock}/>, "Susie")           
         };
     }
 
@@ -45,6 +49,15 @@ class Base extends Component {
     renderSwitch(param) {
         let tmpChar = (param != null ? this.characterList[param.toLowerCase()].bodyComponent : null);
         return ( !tmpChar ? this.characterList["gerald"].bodyComponent : tmpChar);
+    }
+
+    socketDeclaration(tmpSock){        
+        try {            
+            this.setState({ localSock: tmpSock });                 
+        }
+        catch(ex){
+            console.log("Error with socket declaration: ", ex);
+        }
     }
 
     joinNetwork(){
@@ -68,7 +81,9 @@ class Base extends Component {
     render(){    
         var charList = Object.values(this.characterList); 
         return(
-          <div className="main-body">                                                
+          <div className="main-body">
+            <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.props.jUser} socketDeclaration={this.socketDeclaration}/>
+
             <div className="side-nav">
                 {charList.map((item, i) => 
                     <div className={"nav-btn " + item.colorClass + (this.state.selectedChar == item.name.toLowerCase() ? " selected" : "")} key={i} onClick={() => this.changeSelectedChar(item.name)}></div>

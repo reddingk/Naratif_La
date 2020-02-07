@@ -75,7 +75,7 @@ class SocketConnect extends Component{
         try{
             if(localSock){ localSock.close();  }
             
-            var socketQuery = "userid="+ this.props.user.userId +"&token="+ this.props.user.token;
+            var socketQuery = "userId="+ this.props.user.userId +"&token="+ this.props.user.token;
             localSock = socketIOClient(self.props.baseUrl, { 
                 query: socketQuery, 
                 reconnectionAttempts: this.state.reconnectAttempts, 

@@ -39,7 +39,7 @@ class Susie extends Component{
     render(){        
         return(
             <div className="page-container susie-page">
-                <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.props.jUser} socketDeclaration={this.socketDeclaration}/>
+                {/* <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.props.jUser} socketDeclaration={this.socketDeclaration}/> */}
                 <div className="pageBack"><span className="back-icon">S</span></div>
                 <div className="susie-ctrl">
                     <div className="src-ctrl" onClick={() => this.toggleLiveVideo(false, true)}><div className="ctrl-btn" /></div>
@@ -89,7 +89,9 @@ class Susie extends Component{
                     if(sources && videoList) { sources = videoList.concat(sources); }
                     self.setState({ sourceList: sources });
                 });                
-            });          
+            });
+            
+            this.socketDeclaration(this.props.localSock);
         }  
         catch(ex){
             console.log(" [Susie] Error: ", ex);

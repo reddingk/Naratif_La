@@ -24,6 +24,7 @@ class Gerald extends Component{
         this.state = {
             greeting:null,
             weather:null,
+            movies: null,
             weatherIcons:{
                 "01d":"imgs/01d.png", "01n":"imgs/01n.png",
                 "02d":"imgs/02d.png", "02n":"imgs/02n.png",
@@ -45,13 +46,14 @@ class Gerald extends Component{
     }  
 
     componentDidMount(){
-        this.loadDashboard();
+        this.socketDeclaration(this.props.localSock);
     }
 
     render(){        
         return(
             <div className="page-container gerald-page">
-                <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.props.jUser} socketDeclaration={this.socketDeclaration}/>
+                {/* <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.props.jUser} socketDeclaration={this.socketDeclaration}/> */}
+
                 <div className="data-container">
                     {/* Greetings */}
                     <div className="data-section">{ this.state.greeting }</div>
@@ -60,6 +62,26 @@ class Gerald extends Component{
                         { !this.state.weather ?
                         <LoadSpinner userClass="gerald" /> :
                         <div className="geraldTimeline" id="weatherTimeline"></div> }
+                    </div>
+                    {/* Movies */}
+                    <div className="data-section movies">
+                        { !this.state.movies ?
+                            <LoadSpinner userClass="gerald" /> :
+                            <div className="movielist-container">
+                                {this.state.movies.map((movie,i) =>
+                                    <div className="movie-item" key={i}>
+                                        <div className="item-container">
+                                            <img src={movie.poster_path} />
+                                        </div>
+                                        <div className="item-container">
+                                            <div className="movie-title">{movie.title}</div>
+                                            <div className="movie-date">{movie.release_date}</div>                                            
+                                            {/*<div className="movie-overview">{movie.overview}</div>*/}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -96,6 +118,9 @@ class Gerald extends Component{
                         self.setWeatherTimeline(self.state.weather);
                     });
                     break;
+                case "movie":
+                    self.setState({ "movies":data.jdata.results });
+                    break;
                 default:
                     break;
             }
@@ -117,6 +142,10 @@ class Gerald extends Component{
 
                 /* Weather Details */
                 dataMsg = {"rID":self.props.jUser.userId, "type":"phrase", "input":"weather forecast for laurel, md." };           
+                localSock.emit('jada', dataMsg);
+
+                /* Now Playing Movies */
+                dataMsg = {"rID":self.props.jUser.userId, "type":"phrase", "input":"list movies now playing" };           
                 localSock.emit('jada', dataMsg);
             }
         }
@@ -142,7 +171,7 @@ class Gerald extends Component{
             chart.dateFormatter.inputDateFormat = "yyyy-MM-dd HH:mm";
             chart.dateFormatter.dateFormat = "HH";
 
-            var formattedData = data.map(function(time,i){
+            var formattedData = data.dateList.map(function(time,i){
                 var endDate = new Date(time.dt_txt);
                 endDate.setTime(endDate.getTime() + (86400000));
 
