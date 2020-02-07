@@ -4,25 +4,32 @@
 /* Color Themes */
 .access .main-access .page-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+}
+.access .main-access .page-container .access-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.access .main-access .page-container .uv-container {
+  text-align: center;
 }
 .access .main-access .access-pad {
   position: relative;
   width: 400px;
-  height: 500px;
+  height: 450px;
 }
 .access .main-access .access-pad #svg {
   position: absolute;
   width: 100%;
   height: 100%;
+  cursor: default !important;
 }
 .access .main-access .access-pad #svg .node-layer .node-container .input-field .port {
   cursor: pointer;
   opacity: 0.1;
   transition: 0.5s all ease;
-}
-.access .main-access .access-pad #svg .node-layer .node-container .input-field .port:hover {
-  opacity: 1;
 }
 .access .main-access .access-pad #svg .node-layer .node-container .input-field .port .port-scrim {
   fill: transparent;
@@ -32,6 +39,18 @@
 }
 .access .main-access .access-pad #svg .node-layer .node-container .input-field .port .port-inner {
   fill: #5F5F5F;
+}
+.access .main-access .access-pad #svg .node-layer .node-container .input-field .port:hover {
+  opacity: 1;
+}
+.access .main-access .access-pad #svg .node-layer .node-container .input-field .port.sel {
+  opacity: 1;
+}
+.access .main-access .access-pad #svg .node-layer .node-container .input-field .port.sel .port-outer {
+  fill: #fcfcfc;
+}
+.access .main-access .access-pad #svg .node-layer .node-container .input-field .port.sel .port-inner {
+  fill: #fcfcfc;
 }
 .access .main-access .access-pad #svg .connector-handle {
   fill: #fff;
@@ -45,6 +64,33 @@
   stroke: #333;
   stroke-width: 6;
   fill: none;
+}
+.access .main-access .btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+  margin-top: 20px;
+}
+.access .main-access .btn-container .btn {
+  background: rgba(255, 255, 255, 0.7);
+  color: #000000;
+  padding: 5px 25px;
+  border-radius: 50px;
+  font-size: 14px;
+  margin-left: 10px;
+  white-space: nowrap;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: 0.5s all ease;
+}
+.access .main-access .btn-container .btn:hover {
+  opacity: 1;
+}
+.access .main-access .btn-container .btn.reverse {
+  background: rgba(0, 0, 0, 0);
+  color: rgba(255, 255, 255, 0.7);
+  border: 2px solid rgba(255, 255, 255, 0.7);
 }
 .gerald-page {
   padding: 3% 7px;
@@ -707,6 +753,68 @@ html {
   width: 100%;
 }
 /* End Circuit Back */
+/* Content Styles */
+.input-container {
+  padding: 5px 3%;
+  display: flex;
+  justify-content: center;
+  /* Sizes */
+}
+.input-container input {
+  background: rgba(0, 0, 0, 0);
+  color: #ffffff;
+  border: 3px solid #ffffff;
+  border-radius: 50px;
+  padding: 7px 25px;
+  font-size: 14px;
+}
+.input-container input:focus {
+  outline: none;
+}
+.input-container .input-btn {
+  display: inline-block;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  background: #ffffff;
+  margin-left: 20px;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: 0.7s all ease;
+}
+.input-container .input-btn:hover {
+  opacity: 1;
+}
+.input-container.sz-1 input {
+  width: 10%;
+}
+.input-container.sz-2 input {
+  width: 20%;
+}
+.input-container.sz-3 input {
+  width: 30%;
+}
+.input-container.sz-4 input {
+  width: 40%;
+}
+.input-container.sz-5 input {
+  width: 50%;
+}
+.input-container.sz-6 input {
+  width: 60%;
+}
+.input-container.sz-7 input {
+  width: 70%;
+}
+.input-container.sz-8 input {
+  width: 80%;
+}
+.input-container.sz-9 input {
+  width: 90%;
+}
+.input-container.sz-10 input {
+  width: 100%;
+}
 /* Scroll Bar */
 ::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);

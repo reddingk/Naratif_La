@@ -30,8 +30,8 @@ class RooseveltFranklin extends Component{
                 <ResizePanel direction="e">
                     <div className="map-ctrl">
                         <div className="ctrl-item">
-                            <div class="zoom in" onClick={() => this.mapZoom("zoomin")} />
-                            <div class="zoom out"  onClick={() => this.mapZoom("zoomout")} />
+                            <div className="zoom in" onClick={() => this.mapZoom("zoomin")} />
+                            <div className="zoom out"  onClick={() => this.mapZoom("zoomout")} />
                         </div>
                         <div className="ctrl-item area">
                             {this.state.layers.map((item, i) => 
