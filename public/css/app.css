@@ -141,8 +141,13 @@
 .gerald-page .data-container .data-section.movies .movielist-container .movie-item .item-container img {
   height: 150px;
 }
+.gerald-page .data-container .data-section.movies .movielist-container .movie-item .item-container .movie-title {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
 .gerald-page .data-container .data-section.movies .movielist-container .movie-item .item-container.content {
   padding: 0px 7px;
+  text-align: left;
 }
 .rooseveltFranklin-page {
   padding: 1%;

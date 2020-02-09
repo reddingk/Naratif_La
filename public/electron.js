@@ -3,6 +3,7 @@ const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 const isDev = require('electron-is-dev');
 var si = require('systeminformation');
+const storage = require('electron-json-storage');
 
 let mainWindow;
 
@@ -19,6 +20,35 @@ app.on('ready', createWindow);
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit();
+  }
+});
+
+/* Update User Data */
+ipcMain.on('naratif-update-usr', (event, arg) => {  
+  try {
+    var userInfo = (arg ? arg : null);
+
+    if(userInfo){
+      storage.set('naratifUsr', userInfo, function(error) {
+        if (error) throw error;
+        event.sender.send('naratif-update-usr-status', {"status":true });
+      });
+    }
+  } catch(ex){
+    event.sender.send('naratif-update-usr-status', {"status":false, "error":ex });
+  }
+});
+
+/* Get User Data */
+ipcMain.on('naratif-get-usr', (event, arg) => {  
+  try {
+    storage.get('naratifUsr', function(error, data) {
+      if (error) throw error;
+     
+      event.sender.send('naratif-get-usr-status', {"status":true, "user":data });
+    });
+  } catch(ex){
+    event.sender.send('naratif-update-usr-status', {"status":false, "error":ex });
   }
 });
 
