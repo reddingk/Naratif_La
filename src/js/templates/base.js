@@ -13,6 +13,7 @@ import Gerald from './gerald';
 import LilBill from './lilBill';
 import RooseveltFranklin from './rooseveltFranklin';
 import Susie from './susie';
+import LoadSpinner from './components/loadSpinner';
 
 import SocketConnect from './components/socketConnect';
 
@@ -32,10 +33,10 @@ class Base extends Component {
         this.socketDeclaration = this.socketDeclaration.bind(this);
 
         this.characterList = {
-           "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock} />, "Gerald"),
-           "lilbill": new characterModel("LilBill", <LilBill />, "Little Bill"),
-           "rooseveltfranklin": new characterModel("RooseveltFranklin", <RooseveltFranklin />, "Roosevelt Franklin"),
-           "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock}/>, "Susie")           
+           "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock} />, "Gerald", true),
+           "lilbill": new characterModel("LilBill", <LilBill />, "Little Bill",false),
+           "rooseveltfranklin": new characterModel("RooseveltFranklin", <RooseveltFranklin />, "Roosevelt Franklin",false),
+           "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock}/>, "Susie", true)           
         };
     }
 
@@ -52,7 +53,14 @@ class Base extends Component {
     }
 
     socketDeclaration(tmpSock){        
-        try {            
+        try {   
+            this.characterList = {
+                "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={tmpSock} />, "Gerald", true),
+                "lilbill": new characterModel("LilBill", <LilBill />, "Little Bill",false),
+                "rooseveltfranklin": new characterModel("RooseveltFranklin", <RooseveltFranklin />, "Roosevelt Franklin",false),
+                "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={tmpSock}/>, "Susie", true)           
+             };
+
             this.setState({ localSock: tmpSock });                 
         }
         catch(ex){
@@ -88,11 +96,16 @@ class Base extends Component {
                 {charList.map((item, i) => 
                     <div className={"nav-btn " + item.colorClass + (this.state.selectedChar == item.name.toLowerCase() ? " selected" : "")} key={i} onClick={() => this.changeSelectedChar(item.name)}></div>
                 )}
+
+                <div className="nav-btn signout" onClick={() => this.props.userHandler(null)}></div>
             </div>
             <CSSTransitionGroup transitionName={(this.state.forwardDir ? "cardSlide" : "reverseCardSlide")} transitionAppear={false}
                                 transitionLeave={true} transitionLeaveTimeout={3000}
                                 transitionEnter={true} transitionEnterTimeout={3000}>
-                <div key={this.state.selectedChar} className="body-container">{ this.renderSwitch(this.state.selectedChar)}</div>                       
+                { this.state.localSock || !this.characterList[this.state.selectedChar].networkStatus ? 
+                    <div key={this.state.selectedChar} className="body-container">{ this.renderSwitch(this.state.selectedChar)}</div>
+                    : <div className="loaderBase"><LoadSpinner userClass="base" /></div>
+                }
             </CSSTransitionGroup>
           </div>         
         );

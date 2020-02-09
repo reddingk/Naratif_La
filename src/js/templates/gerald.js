@@ -73,7 +73,7 @@ class Gerald extends Component{
                                         <div className="item-container">
                                             <img src={movie.poster_path} />
                                         </div>
-                                        <div className="item-container">
+                                        <div className="item-container content">
                                             <div className="movie-title">{movie.title}</div>
                                             <div className="movie-date">{movie.release_date}</div>                                            
                                             {/*<div className="movie-overview">{movie.overview}</div>*/}
@@ -91,14 +91,16 @@ class Gerald extends Component{
      /* Socket */    
      socketDeclaration(tmpSock){
         var self = this;
-        try {            
-            tmpSock.on('jada', function(res){
-                self.displayData(res.data);                   
-            });
-            localSock = tmpSock;
+        try {        
+            if(tmpSock){    
+                tmpSock.on('jada', function(res){
+                    self.displayData(res.data);                   
+                });
+                localSock = tmpSock;
 
-            // Load Data
-            self.loadDashboard();
+                // Load Data
+                self.loadDashboard();
+            }
         }
         catch(ex){
             console.log("Error with socket declaration: ", ex);
@@ -119,7 +121,7 @@ class Gerald extends Component{
                     });
                     break;
                 case "movie":
-                    self.setState({ "movies":data.jdata.results });
+                    self.setState({ "movies":data.jdata });
                     break;
                 default:
                     break;

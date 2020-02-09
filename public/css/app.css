@@ -130,6 +130,20 @@
   width: 100%;
   height: 100%;
 }
+.gerald-page .data-container .data-section.movies {
+  overflow-y: auto;
+}
+.gerald-page .data-container .data-section.movies .movielist-container .movie-item {
+  display: flex;
+  flex-direction: row;
+  padding: 7px;
+}
+.gerald-page .data-container .data-section.movies .movielist-container .movie-item .item-container img {
+  height: 150px;
+}
+.gerald-page .data-container .data-section.movies .movielist-container .movie-item .item-container.content {
+  padding: 0px 7px;
+}
 .rooseveltFranklin-page {
   padding: 1%;
   position: relative;
@@ -555,11 +569,17 @@ html {
 .naratifLa-body .content-body .main-body .side-nav .nav-btn {
   width: 15px;
   height: 15px;
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.7);
   border-radius: 50%;
-  border: 2px solid;
+  border: 2px solid #ffffff;
   cursor: pointer;
   transition: 0.7s all ease-in-out;
+}
+.naratifLa-body .content-body .main-body .side-nav .nav-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.naratifLa-body .content-body .main-body .side-nav .nav-btn.signout {
+  margin-top: 75px;
 }
 .naratifLa-body .content-body .main-body .side-nav .nav-btn.RooseveltFranklin_theme {
   border-color: #e7717d;
@@ -588,6 +608,14 @@ html {
 .naratifLa-body .content-body .main-body .side-nav .nav-btn.LilBill_theme:hover,
 .naratifLa-body .content-body .main-body .side-nav .nav-btn.LilBill_theme.selected {
   background: rgba(86, 128, 233, 0.7) !important;
+}
+.naratifLa-body .content-body .main-body .loaderBase {
+  height: 300px;
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 /* Load Spinner */
 #loader-wrapper {

@@ -28,10 +28,8 @@ class App extends Component{
  
     userHandler(newUser) {
        var self = this;
-       try {
-          if(newUser){
-             self.setState({jUser: newUser});
-          }
+       try {          
+         self.setState({jUser: newUser});          
        }
        catch(ex){
           console.log("Error with user Handler: ", ex);

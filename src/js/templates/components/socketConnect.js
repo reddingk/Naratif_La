@@ -91,7 +91,10 @@ class SocketConnect extends Component{
             });
 
             localSock.on('disconnect',function() { 
-                self.setState({status: 2}, () => { self.setConnectionView(); });
+                self.setState({status: 2}, () => { 
+                    self.setConnectionView();
+                    self.props.socketDeclaration(null);
+                });
             });
 
             localSock.on('reconnect_failed',function(attemptNumber) { 

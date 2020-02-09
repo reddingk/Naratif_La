@@ -21,6 +21,21 @@
                 flex: 1;
                 #weatherTimeline { width: 100%; height: 100%; }
             }
+
+            &.movies {
+                overflow-y: auto;
+                .movielist-container {
+                    .movie-item {
+                        display: flex;
+                        flex-direction: row;
+                        padding: 7px;
+                        .item-container {
+                            img{ height: 150px; }
+                            &.content { padding: 0px 7px;}
+                        }
+                    }
+                }
+            }
         }
     }
 }

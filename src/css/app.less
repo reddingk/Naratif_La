@@ -92,17 +92,29 @@ body, html {
                 .nav-btn {
                     width: 15px;
                     height: 15px;
-                    background: rgba(255,255,255,1);
+                    background: rgba(255,255,255,0.7);
                     border-radius: 50%;
-                    border: 2px solid;
+                    border: 2px solid rgba(255,255,255,1);
                     cursor: pointer;
                     transition: 0.7s all ease-in-out;
 
+                    &:hover { background: rgba(255,255,255,0.1);}
+
+                    &.signout { margin-top: 75px; }
                     &.RooseveltFranklin_theme { border-color: @rooseveltFranklin; &:hover, &.selected { .rooseveltFranklin(background, 0.7);}}
                     &.Gerald_theme { border-color: @gerald; &:hover, &.selected  { .gerald(background, 0.7);}}
                     &.Susie_theme { border-color: @susie; &:hover, &.selected  { .susie(background, 0.7);}}                    
                     &.LilBill_theme { border-color: @lilBill; &:hover, &.selected  { .lilBill(background, 0.7);}} 
                 }
+            }
+
+            .loaderBase { 
+                height: 300px;
+                width: 300px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
             }
         }
     }
