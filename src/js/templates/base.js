@@ -14,6 +14,7 @@ import LilBill from './lilBill';
 import RooseveltFranklin from './rooseveltFranklin';
 import Susie from './susie';
 import LoadSpinner from './components/loadSpinner';
+import JSearch from './components/jSearch';
 
 import SocketConnect from './components/socketConnect';
 
@@ -91,6 +92,7 @@ class Base extends Component {
         return(
           <div className="main-body">
             <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.props.jUser} socketDeclaration={this.socketDeclaration}/>
+            <JSearch jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock}/>
 
             <div className="side-nav">
                 {charList.map((item, i) => 

@@ -519,6 +519,82 @@
 .lilBill-page .data-container .data-section .chart-data {
   min-height: 300px;
 }
+.jSearch-container {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translate(-50%, 10px);
+  z-index: 100;
+  display: flex;
+}
+.jSearch-container .jSearch-btn {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  transition: 0.5s all ease-in-out;
+  opacity: 0.2;
+  cursor: pointer;
+}
+.jSearch-container .jSearch-btn .jctr {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1.5px solid rgba(230, 230, 230, 0.7);
+  transition: 0.3s all ease-in-out;
+}
+.jSearch-container .jSearch-btn .jctr.j1 {
+  width: 20px;
+  height: 20px;
+  border-top-color: rgba(0, 0, 0, 0);
+  border-bottom-color: rgba(0, 0, 0, 0);
+}
+.jSearch-container .jSearch-btn .jctr.j2 {
+  width: 10px;
+  height: 10px;
+  border-left-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+}
+.jSearch-container .jSearch-btn:hover {
+  opacity: 1;
+  background-color: rgba(150, 150, 150, 0.5);
+}
+.jSearch-container .jSearch-btn:hover .j1 {
+  border-top-color: rgba(230, 230, 230, 0.7);
+  border-bottom-color: rgba(230, 230, 230, 0.7);
+  border-left-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+}
+.jSearch-container .jSearch-btn:hover .j2 {
+  border-left-color: rgba(230, 230, 230, 0.7);
+  border-right-color: rgba(230, 230, 230, 0.7);
+  border-top-color: rgba(0, 0, 0, 0);
+  border-bottom-color: rgba(0, 0, 0, 0);
+}
+.jSearch-container .jSearch-bar {
+  position: relative;
+  width: 0px;
+  margin-left: 15px;
+  background-color: #1c202a;
+  border: 0px solid rgba(150, 150, 150, 0.5);
+  border-radius: 50px;
+  padding: 0;
+  color: #ffffff;
+  outline: none;
+  transition: 0.5s all ease-in-out;
+}
+.jSearch-container.open .jSearch-bar {
+  width: 500px;
+  padding: 7px 15px;
+  border-width: 2px;
+}
+.jSearch-container.open .jSearch-btn {
+  opacity: 1;
+  background-color: rgba(150, 50, 50, 0.5);
+}
 body,
 html {
   margin: 0px !important;

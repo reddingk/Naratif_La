@@ -48,6 +48,13 @@ class Gerald extends Component{
     componentDidMount(){
         this.socketDeclaration(this.props.localSock);
     }
+    
+    componentWillUnmount() {
+        var self = this;
+        if(localSock){ 
+            localSock.removeListener("jada");
+        }
+    }
 
     render(){        
         return(
