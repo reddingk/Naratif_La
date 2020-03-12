@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+const axios = require('axios');
 
 var localSock = null;
 
@@ -8,30 +9,40 @@ class JSearch extends Component{
 
         this.state = {
             open: false,
-            search:""
+            search:"",
+            convo:[]
         }  
 
         this.handleChange = this.handleChange.bind(this); 
         this.handleSubmit = this.handleSubmit.bind(this); 
-        this.socketDeclaration = this.socketDeclaration.bind(this);
+        this.processSearch = this.processSearch.bind(this);
     }
    
     render(){        
         return(
             <div className={"jSearch-container" + (this.state.open ? " open" : "")}>
-                <div className="jSearch-btn" onClick={() => this.setState({open: !this.state.open})}>
-                    <div className="jctr j1"/>
-                    <div className="jctr j2"/>
+                <div className="jSearch-line">
+                    <div className="jSearch-btn" onClick={() => this.setState({open: !this.state.open})}>
+                        <div className="jctr j1"/>
+                        <div className="jctr j2"/>
+                    </div>
+
+                    <input name="search" type="text" className="jSearch-bar" value={this.state.search} onChange={(e) => this.handleChange(e)} onKeyPress={(e) => this.handleSubmit(e)}/>
                 </div>
 
-                <input name="search" type="text" className="jSearch-bar" value={this.state.search} onChange={(e) => this.handleChange(e)} onKeyPress={(e) => this.handleSubmit(e)}/>
+                <div className="convo-container">
+                    {this.state.convo.map((item,i) =>
+                        <div className="convo-item" key={i}>
+                            <div className="item-line left"><div className="item-question">{item.question}</div></div>
+                            <div className="item-line right"><div className="item-answer">{item.answer}</div></div>
+                        </div>
+                    )}
+                </div>
             </div>
         );        
     }
 
-    componentDidMount(){
-        this.socketDeclaration(this.props.localSock);
-    }
+    componentDidMount(){}
 
     handleChange(e){
         try {            
@@ -43,20 +54,24 @@ class JSearch extends Component{
     }
 
     handleSubmit(e){
+        var self = this;
         try {
             if(e.charCode == 13 && e.shiftKey == false) {
                 e.preventDefault();
-                if(!localSock || localSock.listeners('jada').length <= 0) {
-                    this.socketDeclaration(this.props.localSock);
-                }
+                var dataMsg = { "userId":this.props.jUser.userId, "token":this.props.jUser.token, "phrase":this.state.search };           
+                var url = this.props.jConnect.coreUrlBase+"/japi/talk";
 
-                if(localSock){
-                    var dataMsg = {"rID":this.props.jUser.userId, "type":"phrase", "input":this.state.search };           
-                    localSock.emit('jada', dataMsg);
-                }
-                else {
-                    alert("Connection is no activated.");
-                }
+                axios.post(url, dataMsg, {}).then(res => { 
+                        if(!res || res.data.error){
+                            console.log(res.data.error);
+                        }
+                        else {
+                            self.processSearch(self.state.search, res.data);
+                        }
+                    })
+                    .catch(error => { 
+                        console.log("[Error] " + error.message);
+                    });
             }
         }
         catch(ex){
@@ -64,19 +79,15 @@ class JSearch extends Component{
         }
     }
 
-    /* Socket */
-    socketDeclaration(tmpSock){
-        var self = this;
-        try {        
-            if(tmpSock){    
-                tmpSock.on('jada', function(res){
-                    console.log(res);                   
-                });
-                localSock = tmpSock;
-            }
+    processSearch(query, results){
+        try {
+            var tmpConvo = this.state.convo;
+            tmpConvo.push({ question: query, answer: results.jresponse });
+
+            this.setState({convo: tmpConvo });
         }
         catch(ex){
-            console.log("Error with socket declaration: ", ex);
+            console.log("Error processing search data: ",ex);
         }
     }
 }

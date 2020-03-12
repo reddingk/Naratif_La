@@ -525,7 +525,11 @@
   left: 50%;
   transform: translate(-50%, 10px);
   z-index: 100;
+  display: block;
+}
+.jSearch-container .jSearch-line {
   display: flex;
+  width: 100%;
 }
 .jSearch-container .jSearch-btn {
   position: relative;
@@ -586,6 +590,43 @@
   outline: none;
   transition: 0.5s all ease-in-out;
 }
+.jSearch-container .convo-container {
+  width: 100%;
+  padding: 20px;
+  background: rgba(28, 32, 42, 0.7);
+  display: none;
+}
+.jSearch-container .convo-container .convo-item {
+  display: block;
+  margin-bottom: 20px;
+  width: 100%;
+}
+.jSearch-container .convo-container .convo-item .item-line {
+  display: block;
+  width: 100%;
+  font-size: 1.2rem;
+}
+.jSearch-container .convo-container .convo-item .item-line.left {
+  text-align: left;
+}
+.jSearch-container .convo-container .convo-item .item-line.right {
+  text-align: right;
+}
+.jSearch-container .convo-container .convo-item .item-line + .item-line {
+  margin-top: 5px;
+}
+.jSearch-container .convo-container .convo-item .item-line .item-question {
+  background: rgba(250, 200, 200, 0.9);
+  padding: 3px 15px;
+  border-radius: 5px;
+  display: inline;
+}
+.jSearch-container .convo-container .convo-item .item-line .item-answer {
+  background: rgba(200, 200, 250, 0.9);
+  padding: 3px 15px;
+  border-radius: 5px;
+  display: inline;
+}
 .jSearch-container.open .jSearch-bar {
   width: 500px;
   padding: 7px 15px;
@@ -594,6 +635,9 @@
 .jSearch-container.open .jSearch-btn {
   opacity: 1;
   background-color: rgba(150, 50, 50, 0.5);
+}
+.jSearch-container.open .convo-container {
+  display: flex;
 }
 body,
 html {

@@ -92,7 +92,7 @@ class Base extends Component {
         return(
           <div className="main-body">
             <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.props.jUser} socketDeclaration={this.socketDeclaration}/>
-            <JSearch jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock}/>
+            <JSearch jConnect={this.props.jConnect} jUser={this.props.jUser}/>
 
             <div className="side-nav">
                 {charList.map((item, i) => 
