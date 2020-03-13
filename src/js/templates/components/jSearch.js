@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+/* Components */
+import LoadSpinner from '../components/loadSpinner';
+
 const axios = require('axios');
 
-var localSock = null;
+
 
 class JSearch extends Component{
     constructor(props) {
@@ -9,6 +12,7 @@ class JSearch extends Component{
 
         this.state = {
             open: false,
+            loader: false,
             search:"",
             convo:[]
         }  
@@ -30,7 +34,8 @@ class JSearch extends Component{
                     <input name="search" type="text" className="jSearch-bar" value={this.state.search} onChange={(e) => this.handleChange(e)} onKeyPress={(e) => this.handleSubmit(e)}/>
                 </div>
 
-                <div className="convo-container">
+                <div className={"convo-container" + (this.state.loader ? " loading" : "")}>
+                    {this.state.loader && <LoadSpinner userClass="" /> }
                     {this.state.convo.map((item,i) =>
                         <div className="convo-item" key={i}>
                             <div className="item-line left"><div className="item-question">{item.question}</div></div>
@@ -60,18 +65,25 @@ class JSearch extends Component{
                 e.preventDefault();
                 var dataMsg = { "userId":this.props.jUser.userId, "token":this.props.jUser.token, "phrase":this.state.search };           
                 var url = this.props.jConnect.coreUrlBase+"/japi/talk";
+                var tmpSearch = self.state.search;
 
-                axios.post(url, dataMsg, {}).then(res => { 
+                this.setState({ loader: true }, () =>{
+                    axios.post(url, dataMsg, {}).then(res => { 
                         if(!res || res.data.error){
-                            console.log(res.data.error);
+                            self.setState({ loader: false }, () => {
+                                console.log(res.data.error);
+                            });
                         }
                         else {
-                            self.processSearch(self.state.search, res.data);
+                            self.setState({ search: "", loader: false }, () => {
+                                self.processSearch(tmpSearch, res.data);
+                            });                            
                         }
                     })
                     .catch(error => { 
                         console.log("[Error] " + error.message);
                     });
+                });
             }
         }
         catch(ex){

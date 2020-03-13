@@ -595,6 +595,7 @@
   padding: 20px;
   background: rgba(28, 32, 42, 0.7);
   display: none;
+  position: relative;
 }
 .jSearch-container .convo-container .convo-item {
   display: block;
@@ -619,13 +620,15 @@
   background: rgba(250, 200, 200, 0.9);
   padding: 3px 15px;
   border-radius: 5px;
-  display: inline;
+  display: inline-flex;
+  margin-right: 20px;
 }
 .jSearch-container .convo-container .convo-item .item-line .item-answer {
   background: rgba(200, 200, 250, 0.9);
   padding: 3px 15px;
   border-radius: 5px;
-  display: inline;
+  display: inline-flex;
+  margin-left: 20px;
 }
 .jSearch-container.open .jSearch-bar {
   width: 500px;
@@ -638,6 +641,10 @@
 }
 .jSearch-container.open .convo-container {
   display: flex;
+  flex-direction: column;
+}
+.jSearch-container.open .convo-container.loading {
+  min-height: 200px;
 }
 body,
 html {

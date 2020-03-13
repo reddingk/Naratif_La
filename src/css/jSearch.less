@@ -54,6 +54,7 @@
         padding: 20px;
         background: rgba(28,32,42,0.7);
         display: none;
+        position: relative;
         .convo-item {
             display: block;
             margin-bottom: 20px;
@@ -71,14 +72,16 @@
                     background: rgba(250,200,200,0.9);
                     padding: 3px 15px;
                     border-radius: 5px;
-                    display: inline;
+                    display: inline-flex;
+                    margin-right: 20px;
                 }
 
                 .item-answer {
                     background: rgba(200,200,250,0.9);
                     padding: 3px 15px;
                     border-radius: 5px;
-                    display: inline;
+                    display: inline-flex;
+                    margin-left: 20px;
                 }
             }
         }
@@ -87,6 +90,10 @@
     &.open {
         .jSearch-bar { width: 500px; padding: 7px 15px; border-width: 2px;}
         .jSearch-btn { opacity: 1; background-color: rgba(150,50,50, 0.5);}
-        .convo-container { display: flex;}
+        .convo-container { 
+            display: flex; 
+            flex-direction: column;
+            &.loading { min-height: 200px; }
+        }
     }
 }
