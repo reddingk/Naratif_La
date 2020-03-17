@@ -5,6 +5,8 @@
     transform: translate(-50%, 10px);
     z-index: 100;
     display: block;
+    overflow-y: hidden;
+    height: 95%;
     .jSearch-line { display: flex; width: 100%;}
 
     .jSearch-btn {
@@ -50,11 +52,11 @@
     }
 
     .convo-container {
-        width: 100%;
         padding: 20px;
         background: rgba(28,32,42,0.7);
         display: none;
         position: relative;
+        transition: 0.5s all ease-in-out;
         .convo-item {
             display: block;
             margin-bottom: 20px;
@@ -93,6 +95,8 @@
         .convo-container { 
             display: flex; 
             flex-direction: column;
+            max-height: calc(95% - 35px);
+            overflow-y: auto;
             &.loading { min-height: 200px; }
         }
     }

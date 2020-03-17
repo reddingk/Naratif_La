@@ -59,8 +59,6 @@ class Gerald extends Component{
     render(){        
         return(
             <div className="page-container gerald-page">
-                {/* <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.props.jUser} socketDeclaration={this.socketDeclaration}/> */}
-
                 <div className="data-container">
                     {/* Greetings */}
                     <div className="data-section">{ this.state.greeting }</div>

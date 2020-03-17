@@ -103,7 +103,12 @@ class SocketConnect extends Component{
 
             localSock.on('reconnect_attempt',function(attemptNumber) { 
                 self.setState({status: 3}, () => { self.setConnectionView(); });
-            });            
+            });  
+            
+            // Disable Connection
+            localSock.on('disable_connection',function(attemptNumber) { 
+                self.props.signOut();
+            }); 
         }
         catch(ex){
             console.log("Error connecting to socket: ",ex);

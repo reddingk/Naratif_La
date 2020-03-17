@@ -32,6 +32,7 @@ class Base extends Component {
         this.changeSelectedChar = this.changeSelectedChar.bind(this);
         this.renderSwitch = this.renderSwitch.bind(this);
         this.socketDeclaration = this.socketDeclaration.bind(this);
+        this.signOutUser = this.signOutUser.bind(this);
 
         this.characterList = {
            "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock} />, "Gerald", true),
@@ -56,10 +57,10 @@ class Base extends Component {
     socketDeclaration(tmpSock){        
         try {   
             this.characterList = {
-                "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={tmpSock} />, "Gerald", true),
+                "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={tmpSock} signOut={this.signOutUser} />, "Gerald", true),
                 "lilbill": new characterModel("LilBill", <LilBill />, "Little Bill",false),
                 "rooseveltfranklin": new characterModel("RooseveltFranklin", <RooseveltFranklin />, "Roosevelt Franklin",false),
-                "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={tmpSock}/>, "Susie", true)           
+                "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={tmpSock} signOut={this.signOutUser} />, "Susie", true)           
              };
 
             this.setState({ localSock: tmpSock });                 
@@ -87,11 +88,20 @@ class Base extends Component {
         }
     }
 
+    signOutUser(){
+        try {
+            this.props.userHandler({});
+        }
+        catch(ex){
+            console.log("Error Signing User Out: ",ex);
+        }
+    }
+
     render(){    
         var charList = Object.values(this.characterList); 
         return(
           <div className="main-body">
-            <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.props.jUser} socketDeclaration={this.socketDeclaration}/>
+            <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.props.jUser} socketDeclaration={this.socketDeclaration} signOut={this.signOutUser}/>
             <JSearch jConnect={this.props.jConnect} jUser={this.props.jUser}/>
 
             <div className="side-nav">

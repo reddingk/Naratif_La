@@ -526,6 +526,8 @@
   transform: translate(-50%, 10px);
   z-index: 100;
   display: block;
+  overflow-y: hidden;
+  height: 95%;
 }
 .jSearch-container .jSearch-line {
   display: flex;
@@ -591,11 +593,11 @@
   transition: 0.5s all ease-in-out;
 }
 .jSearch-container .convo-container {
-  width: 100%;
   padding: 20px;
   background: rgba(28, 32, 42, 0.7);
   display: none;
   position: relative;
+  transition: 0.5s all ease-in-out;
 }
 .jSearch-container .convo-container .convo-item {
   display: block;
@@ -642,6 +644,8 @@
 .jSearch-container.open .convo-container {
   display: flex;
   flex-direction: column;
+  max-height: calc(95% - 35px);
+  overflow-y: auto;
 }
 .jSearch-container.open .convo-container.loading {
   min-height: 200px;

@@ -62,6 +62,9 @@ class App extends Component{
          /* Get User Data */
          ipcRenderer.on('naratif-get-usr-status', function(event, data){
             if(data.status) {
+               // Check status of token
+               
+               // Set jUser
                self.setState({ jUser: data.user });
             }
             else{

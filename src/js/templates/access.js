@@ -20,12 +20,13 @@ class Access extends Component{
         this.socketDeclaration = this.socketDeclaration.bind(this);
         this.handleJAuth = this.handleJAuth.bind(this);
         this.randomUsr = this.randomUsr.bind(this);
+        this.signOutUser = this.signOutUser.bind(this);
     }
    
     render(){        
         return(
             <div className="main-body access">
-                <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.randomUsr()} socketDeclaration={this.socketDeclaration}/>
+                <SocketConnect baseUrl={this.props.jConnect.coreUrlBase} user={this.randomUsr()} socketDeclaration={this.socketDeclaration} signOut={this.signOutUser}/>
 
                 <div className="body-container main-access">
                     <div className="page-container">
@@ -56,6 +57,7 @@ class Access extends Component{
         }
         return ret;
     }
+
     updateUID(userId){
         try {
             this.setState({userId: userId, error: null});
@@ -106,6 +108,15 @@ class Access extends Component{
         }
         catch(ex){
             console.log("[Error] with jAuth: ", ex);
+        }
+    }
+
+    signOutUser(){
+        try {
+            this.props.userHandler({});
+        }
+        catch(ex){
+            console.log("Error Signing User Out: ",ex);
         }
     }
 }
