@@ -620,17 +620,39 @@
 }
 .jSearch-container .convo-container .convo-item .item-line .item-question {
   background: rgba(250, 200, 200, 0.9);
+  color: #ffffff;
   padding: 3px 15px;
   border-radius: 5px;
   display: inline-flex;
   margin-right: 20px;
 }
 .jSearch-container .convo-container .convo-item .item-line .item-answer {
-  background: rgba(200, 200, 250, 0.9);
+  background: rgba(230, 230, 230, 0.9);
   padding: 3px 15px;
   border-radius: 5px;
   display: inline-flex;
   margin-left: 20px;
+}
+.jSearch-container .convo-container .convo-item .item-line .item-answer .weather-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.jSearch-container .convo-container .convo-item .item-line .item-answer .weather-list .list-item {
+  padding: 7px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.jSearch-container .convo-container .convo-item .item-line .item-answer .weather-list .list-item .item-icon {
+  height: 50px;
+  width: 50px;
+}
+.jSearch-container .convo-container .convo-item .item-line .item-answer .weather-list .list-item .item-degree {
+  font-size: 25px;
+}
+.jSearch-container .convo-container .convo-item .item-line .item-answer .weather-list .list-item .item-date {
+  font-size: 12px;
 }
 .jSearch-container.open .jSearch-bar {
   width: 500px;
@@ -639,7 +661,7 @@
 }
 .jSearch-container.open .jSearch-btn {
   opacity: 1;
-  background-color: rgba(150, 50, 50, 0.5);
+  background-color: rgba(50, 50, 50, 0.5);
 }
 .jSearch-container.open .convo-container {
   display: flex;
@@ -649,6 +671,30 @@
 }
 .jSearch-container.open .convo-container.loading {
   min-height: 200px;
+}
+.jSearch-container.gerald.open .jSearch-btn {
+  background-color: rgba(230, 38, 37, 0.5) !important;
+}
+.jSearch-container.gerald .convo-item .item-question {
+  background-color: rgba(230, 38, 37, 0.4) !important;
+}
+.jSearch-container.lilbill.open .jSearch-btn {
+  background-color: rgba(86, 128, 233, 0.5) !important;
+}
+.jSearch-container.lilbill .convo-item .item-question {
+  background-color: rgba(86, 128, 233, 0.4) !important;
+}
+.jSearch-container.rooseveltfranklin.open .jSearch-btn {
+  background-color: rgba(231, 113, 125, 0.5) !important;
+}
+.jSearch-container.rooseveltfranklin .convo-item .item-question {
+  background-color: rgba(231, 113, 125, 0.4) !important;
+}
+.jSearch-container.susie.open .jSearch-btn {
+  background-color: rgba(252, 205, 4, 0.5) !important;
+}
+.jSearch-container.susie .convo-item .item-question {
+  background-color: rgba(252, 205, 4, 0.4) !important;
 }
 body,
 html {

@@ -14,8 +14,7 @@ class App extends Component{
     constructor(props) {
        super(props);
        this.state = {
-           jUser:{},
-           jUser0:{_id: "5ba02d36ea65672f28f6eec2", userId: "ktest", name: "Kris Redding", token: "J6968MjfCFaeMHMt8kDAA1"}
+           jUser:{}
        };
  
        this.jConnect = {

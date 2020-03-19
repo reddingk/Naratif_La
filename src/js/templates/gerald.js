@@ -182,8 +182,8 @@ class Gerald extends Component{
                 var endDate = new Date(time.dt_txt);
                 endDate.setTime(endDate.getTime() + (86400000));
 
-                var months = ["Mon","Tues","Wed","Thurs","Fri","Sat","Sun"];
-                var displayTxt = months[(new Date(time.dt_txt)).getDay()] + ": " + time.main.temp;
+                var days = ["Mon","Tues","Wed","Thurs","Fri","Sat","Sun"];
+                var displayTxt = days[(new Date(time.dt_txt)).getDay()] + ": " + time.main.temp;
 
                 var retData = { "category": "", "color": colorSet.getIndex(i), "textDisabled": false, "text":displayTxt, 
                 "icon":self.state.weatherIcons[time.weather[0].icon], "start":time.dt_txt,"end":endDate};

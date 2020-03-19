@@ -4,9 +4,65 @@ import LoadSpinner from '../components/loadSpinner';
 
 const axios = require('axios');
 
+class JResponse extends Component {
+    constructor(props){
+        super(props);
+        this.state = {};
 
+        this.renderSwitch = this.renderSwitch.bind(this);
+    }
 
-class JSearch extends Component{
+    renderSwitch(item){
+        try {
+            switch(item.type){
+                case "weather":
+                    if(item.data.dateList) {
+                        return <div className="weather-list">
+                                {item.data.dateList.map((item,i) =>
+                                    <div className="list-item" key={i}>
+                                        <img className="item-icon" src={"imgs/"+item.weather[0].icon+".png"}/>
+                                        <span className="item-degree">{item.main.temp}&#176;</span>
+                                        <span className="item-date">{item.dt_txt}</span>
+                                    </div>
+                                )}
+                            </div>;
+                    }
+                    else if(Array.isArray(item.data)) {
+                        return <div className="weather-list">
+                                {item.data.map((item,i) =>
+                                    <div className="list-item"  key={i}>
+                                        <img className="item-icon" src={"imgs/"+item.weather[0].icon+".png"}/>
+                                        <span className="item-degree">{item.main.temp}&#176;</span>
+                                        <span className="item-date">{item.dt_txt}</span>
+                                    </div>
+                                )}
+                            </div>;
+                    }
+                    else {
+                        return <span>{item.answer}</span>;
+                    }
+                    break;
+                default:
+                    return <span>{item.answer}</span>;
+                    break;
+            }
+        }
+        catch(ex){
+            console.log("Error displaying answer" ,ex );
+            return <span />;
+        }
+    }
+
+    render() {
+        return (
+            <div className="item-answer">
+                {this.renderSwitch(this.props.answer)}
+            </div>
+        )
+    }
+}
+
+class JSearch extends Component {
     constructor(props) {
         super(props);
 
@@ -24,7 +80,7 @@ class JSearch extends Component{
    
     render(){        
         return(
-            <div className={"jSearch-container" + (this.state.open ? " open" : "")}>
+            <div className={"jSearch-container "+ this.props.character + (this.state.open ? " open" : "")}>
                 <div className="jSearch-line">
                     <div className="jSearch-btn" onClick={() => this.setState({open: !this.state.open})}>
                         <div className="jctr j1"/>
@@ -39,7 +95,8 @@ class JSearch extends Component{
                     {this.state.convo.map((item,i) =>
                         <div className="convo-item" key={i}>
                             <div className="item-line left"><div className="item-question">{item.question}</div></div>
-                            <div className="item-line right"><div className="item-answer">{item.answer}</div></div>
+                            {/*<div className="item-line right"><div className="item-answer">{item.answer}</div></div> */}
+                            <div className="item-line right"><JResponse answer={item}/></div>
                         </div>
                     )}
                 </div>
@@ -94,7 +151,7 @@ class JSearch extends Component{
     processSearch(query, results){
         try {
             var tmpConvo = this.state.convo;
-            tmpConvo.push({ question: query, answer: results.jresponse });
+            tmpConvo.push({ question: query, answer: results.jresponse, type: results.jtype, data: results.jdata });
 
             this.setState({convo: tmpConvo });
         }

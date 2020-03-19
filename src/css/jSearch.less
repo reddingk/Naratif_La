@@ -72,6 +72,7 @@
 
                 .item-question { 
                     background: rgba(250,200,200,0.9);
+                    color: rgba(255,255,255,1); 
                     padding: 3px 15px;
                     border-radius: 5px;
                     display: inline-flex;
@@ -79,11 +80,25 @@
                 }
 
                 .item-answer {
-                    background: rgba(200,200,250,0.9);
+                    background: rgba(230,230,230,0.9);
                     padding: 3px 15px;
                     border-radius: 5px;
                     display: inline-flex;
                     margin-left: 20px;
+                    .weather-list {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        .list-item {
+                            padding: 7px;
+                            display: flex;
+                            flex-direction: column;
+                            text-align: center;
+                            .item-icon { height: 50px; width: 50px; }
+                            .item-degree { font-size: 25px;}
+                            .item-date { font-size: 12px;}
+                        }
+                    }
                 }
             }
         }
@@ -91,13 +106,49 @@
 
     &.open {
         .jSearch-bar { width: 500px; padding: 7px 15px; border-width: 2px;}
-        .jSearch-btn { opacity: 1; background-color: rgba(150,50,50, 0.5);}
+        .jSearch-btn { opacity: 1; background-color: rgba(50,50,50, 0.5);}
         .convo-container { 
             display: flex; 
             flex-direction: column;
             max-height: calc(95% - 35px);
             overflow-y: auto;
             &.loading { min-height: 200px; }
+        }
+    }
+
+    &.gerald { 
+        &.open { 
+            .jSearch-btn { .gerald(background-color, 0.5); }
+        }
+        .convo-item {
+            .item-question { .gerald(background-color, 0.4);}
+        }
+    }
+
+    &.lilbill { 
+        &.open { 
+            .jSearch-btn { .lilBill(background-color, 0.5); }
+        }
+        .convo-item {
+            .item-question { .lilBill(background-color, 0.4);}
+        }
+    }
+
+    &.rooseveltfranklin { 
+        &.open { 
+            .jSearch-btn { .rooseveltFranklin(background-color, 0.5); }
+        }
+        .convo-item {
+            .item-question { .rooseveltFranklin(background-color, 0.4);}
+        }
+    }
+
+    &.susie { 
+        &.open { 
+            .jSearch-btn { .susie(background-color, 0.5); }
+        }
+        .convo-item {
+            .item-question { .susie(background-color, 0.4);}
         }
     }
 }
