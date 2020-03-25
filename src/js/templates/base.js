@@ -13,6 +13,7 @@ import Gerald from './gerald';
 import LilBill from './lilBill';
 import RooseveltFranklin from './rooseveltFranklin';
 import Susie from './susie';
+import Fillmore from './fillmore';
 import LoadSpinner from './components/loadSpinner';
 import JSearch from './components/jSearch';
 
@@ -22,7 +23,7 @@ class Base extends Component {
     constructor(props) {
         super(props);
         this.state = {         
-          selectedChar: "gerald",
+          selectedChar: "fillmore",
           forwardDir: true,
           selectedItem: null,
           dataLibrary:{},
@@ -38,7 +39,8 @@ class Base extends Component {
            "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock} />, "Gerald", true),
            "lilbill": new characterModel("LilBill", <LilBill />, "Little Bill",false),
            "rooseveltfranklin": new characterModel("RooseveltFranklin", <RooseveltFranklin />, "Roosevelt Franklin",false),
-           "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock}/>, "Susie", true)           
+           "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock}/>, "Susie", true),
+           "fillmore": new characterModel("Fillmore", <Fillmore jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock}/>, "Fillmore", true)           
         };
     }
 
@@ -60,7 +62,8 @@ class Base extends Component {
                 "gerald": new characterModel("Gerald", <Gerald jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={tmpSock} signOut={this.signOutUser} />, "Gerald", true),
                 "lilbill": new characterModel("LilBill", <LilBill />, "Little Bill",false),
                 "rooseveltfranklin": new characterModel("RooseveltFranklin", <RooseveltFranklin />, "Roosevelt Franklin",false),
-                "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={tmpSock} signOut={this.signOutUser} />, "Susie", true)           
+                "susie": new characterModel("Susie", <Susie jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={tmpSock} signOut={this.signOutUser} />, "Susie", true),
+                "fillmore": new characterModel("Fillmore", <Fillmore jConnect={this.props.jConnect} jUser={this.props.jUser} localSock={this.state.localSock}/>, "Fillmore", true)           
              };
 
             this.setState({ localSock: tmpSock });                 

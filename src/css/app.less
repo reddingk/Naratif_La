@@ -31,11 +31,15 @@
 @susie: rgba(252,205,4,1);
 .susie(@prop,@val){ @{prop}: rgba(252,205,4,@val) !important; }
 
+@fillmore: rgba(63,167,158,1);
+.fillmore(@prop,@val){ @{prop}: rgba(63,167,158,@val) !important; }
+
 @import "access.less";
 @import "gerald.less";
 @import "rooseveltFranklin.less";
 @import "susie.less";
 @import "lilBill.less";
+@import "fillmore.less";
 @import "jSearch.less";
 
 body, html { 
@@ -106,6 +110,7 @@ body, html {
                     &.Gerald_theme { border-color: @gerald; &:hover, &.selected  { .gerald(background, 0.7);}}
                     &.Susie_theme { border-color: @susie; &:hover, &.selected  { .susie(background, 0.7);}}                    
                     &.LilBill_theme { border-color: @lilBill; &:hover, &.selected  { .lilBill(background, 0.7);}} 
+                    &.Fillmore_theme { border-color: @fillmore; &:hover, &.selected  { .fillmore(background, 0.7);}}  
                 }
             }
 
@@ -181,6 +186,7 @@ body, html {
     &.gerald { border-top-color: @gerald;}
     &.lilBill { border-top-color: @lilBill;}
     &.susie { border-top-color: @susie;}    
+    &.fillmore { border-top-color: @fillmore;}   
 }
 
 @-webkit-keyframes spin {

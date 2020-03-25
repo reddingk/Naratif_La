@@ -519,6 +519,15 @@
 .lilBill-page .data-container .data-section .chart-data {
   min-height: 300px;
 }
+.fillmore-page {
+  padding: 3%;
+}
+.fillmore-page .ctrl-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
 .jSearch-container {
   position: fixed;
   top: 10px;
@@ -696,6 +705,12 @@
 .jSearch-container.susie .convo-item .item-question {
   background-color: rgba(252, 205, 4, 0.4) !important;
 }
+.jSearch-container.fillmore.open .jSearch-btn {
+  background-color: rgba(63, 167, 158, 0.5) !important;
+}
+.jSearch-container.fillmore .convo-item .item-question {
+  background-color: rgba(63, 167, 158, 0.4) !important;
+}
 body,
 html {
   margin: 0px !important;
@@ -791,6 +806,13 @@ html {
 .naratifLa-body .content-body .main-body .side-nav .nav-btn.LilBill_theme.selected {
   background: rgba(86, 128, 233, 0.7) !important;
 }
+.naratifLa-body .content-body .main-body .side-nav .nav-btn.Fillmore_theme {
+  border-color: #3fa79e;
+}
+.naratifLa-body .content-body .main-body .side-nav .nav-btn.Fillmore_theme:hover,
+.naratifLa-body .content-body .main-body .side-nav .nav-btn.Fillmore_theme.selected {
+  background: rgba(63, 167, 158, 0.7) !important;
+}
 .naratifLa-body .content-body .main-body .loaderBase {
   height: 300px;
   width: 300px;
@@ -868,6 +890,9 @@ html {
 }
 #loader.susie {
   border-top-color: #fccd04;
+}
+#loader.fillmore {
+  border-top-color: #3fa79e;
 }
 @-webkit-keyframes spin {
   0% {
