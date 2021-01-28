@@ -16,7 +16,7 @@
     "@amcharts/amcharts4": "^4.7.18",
     "axios": "^0.19.2",
     "draggable": "^4.2.0",
-    "electron": "7.1.1",
+    "electron": "9.4.0",
     "electron-builder": "^20.38.2",
     "electron-is-dev": "^1.0.1",
     "electron-json-storage": "^4.1.8",
